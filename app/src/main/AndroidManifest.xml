@@ -13,7 +13,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
 
-        <activity android:name=".camera.CameraActivity">
+        <activity android:name=".ProxyActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <action android:name="android.intent.action.VIEW" />
@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".MainActivity"/>
         <activity android:name=".login.LoginActivity"/>
+        <activity android:name=".camera.CameraActivity"/>
+        <activity android:name=".termination.TerminationResultActivity"/>
     </application>
 
 </manifest>

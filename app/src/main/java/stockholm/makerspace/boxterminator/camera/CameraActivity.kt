@@ -1,6 +1,9 @@
 package stockholm.makerspace.boxterminator.camera
 
 import android.Manifest
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
@@ -14,6 +17,7 @@ import com.tbruyelle.rxpermissions2.RxPermissions
 import org.jetbrains.anko.toast
 import stockholm.makerspace.boxterminator.R
 
+const val QR_EXTRA = "qr_extra"
 
 class CameraActivity : AppCompatActivity() {
 
@@ -56,6 +60,10 @@ class CameraActivity : AppCompatActivity() {
         codeScanner?.decodeCallback = DecodeCallback {
             runOnUiThread {
                 Toast.makeText(this, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
+                val qrIntent = Intent()
+                qrIntent.putExtra(QR_EXTRA, it.text)
+                setResult(Activity.RESULT_OK, qrIntent)
+                finish()
             }
         }
         codeScanner?.errorCallback = ErrorCallback {

@@ -1,5 +1,6 @@
 package stockholm.makerspace.boxterminator.login
 
+import android.annotation.SuppressLint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.koin.core.KoinComponent
@@ -14,6 +15,7 @@ class LoginPresenter(private var view: LoginContract.View) : LoginContract.Prese
     private val skynet: Skynet by inject()
     private val datastore: SkynetDatastore by inject()
 
+    @SuppressLint("CheckResult")
     override fun login(username: String, pass: String) {
         val loginRequest = LoginRequest(username = username, password = pass)
         skynet.getClient().login(loginRequest)
@@ -23,9 +25,9 @@ class LoginPresenter(private var view: LoginContract.View) : LoginContract.Prese
                 {
                     datastore.saveSkynetToken(it.access_token)
                     datastore.saveTokenExpiryDate(it.expires)
-
+                    view.allowAccess()
                 },
-                {view.showError(it.message)}
+                { view.showError(it.message) }
             )
     }
 }

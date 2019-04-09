@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         terminationBtn.setOnClickListener { startActivityForResult(intentFor<CameraActivity>(), CAMERA_REQUEST) }
-        goodBtn.setOnClickListener { startActivity(intentFor<TerminationResultActivity>(TERMINATION_EXTRA to 1)) }
-        badBtn.setOnClickListener { startActivity(intentFor<TerminationResultActivity>(TERMINATION_EXTRA to 0)) }
+        //goodBtn.setOnClickListener { startActivity(intentFor<TerminationResultActivity>(TERMINATION_EXTRA to 1)) }
+        //badBtn.setOnClickListener { startActivity(intentFor<TerminationResultActivity>(TERMINATION_EXTRA to 0)) }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         if(requestCode == CAMERA_REQUEST){
             if(resultCode == Activity.RESULT_OK){
                 qrCodeResultText.text = data?.getStringExtra(QR_EXTRA)
+
             }
         }
     }

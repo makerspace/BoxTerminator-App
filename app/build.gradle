@@ -45,6 +45,10 @@ dependencies {
     implementation 'com.budiyev.android:code-scanner:2.1.0'
     // RxPermissions
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+    // JodaTime
+    implementation 'joda-time:joda-time:2.10'
+    // Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 
     //Test
     testImplementation 'junit:junit:4.12'

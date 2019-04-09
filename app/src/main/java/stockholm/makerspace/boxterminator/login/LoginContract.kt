@@ -9,5 +9,6 @@ interface LoginContract {
 
     interface View{
         fun showError(message: String?)
+        fun allowAccess()
     }
 }

@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".termination.TerminationActivity"/>
         <activity android:name=".login.LoginActivity"/>
         <activity android:name=".camera.CameraActivity"/>
         <activity android:name=".termination.TerminationResultActivity"/>

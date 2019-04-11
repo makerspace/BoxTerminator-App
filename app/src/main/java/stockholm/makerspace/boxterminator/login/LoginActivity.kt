@@ -8,7 +8,7 @@ import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.newTask
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
-import stockholm.makerspace.boxterminator.MainActivity
+import stockholm.makerspace.boxterminator.termination.TerminationActivity
 import stockholm.makerspace.boxterminator.R
 
 
@@ -32,6 +32,6 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     }
 
     override fun allowAccess() {
-        startActivity(intentFor<MainActivity>().clearTask().newTask())
+        startActivity(intentFor<TerminationActivity>().clearTask().newTask())
     }
 }

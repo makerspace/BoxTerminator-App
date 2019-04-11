@@ -7,11 +7,14 @@ import org.koin.dsl.module
 import stockholm.makerspace.boxterminator.login.LoginContract
 import stockholm.makerspace.boxterminator.login.LoginPresenter
 import stockholm.makerspace.boxterminator.network.Skynet
+import stockholm.makerspace.boxterminator.termination.TerminationContract
+import stockholm.makerspace.boxterminator.termination.TerminationPresenter
 import stockholm.makerspace.boxterminator.utils.SkynetDatastore
 
 
 val applicationModule = module(override = true) {
     factory<LoginContract.Presenter> { (view: LoginContract.View) -> LoginPresenter(view) }
+    factory<TerminationContract.Presenter> { (view: TerminationContract.View) -> TerminationPresenter(view) }
     single { Skynet() }
     single { SkynetDatastore(androidContext().getSharedPreferences("Arnie", Context.MODE_PRIVATE)) }
 }

@@ -7,7 +7,9 @@ import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.newTask
 import org.koin.android.ext.android.inject
 import stockholm.makerspace.boxterminator.login.LoginActivity
+import stockholm.makerspace.boxterminator.termination.TerminationActivity
 import stockholm.makerspace.boxterminator.utils.SkynetDatastore
+import timber.log.Timber
 
 
 class ProxyActivity : AppCompatActivity() {
@@ -16,12 +18,14 @@ class ProxyActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        startActivity(intentFor<TerminationActivity>().clearTask().newTask())
 
-        val shouldLogIntoSkynet = datastore.hasSessionExpired()
+        /*val shouldLogIntoSkynet = datastore.hasSessionExpired()
+        Timber.d("has session expired $shouldLogIntoSkynet")
         if (shouldLogIntoSkynet) {
             startActivity(intentFor<LoginActivity>().clearTask().newTask())
         } else {
-            startActivity(intentFor<MainActivity>().clearTask().newTask())
-        }
+            startActivity(intentFor<TerminationActivity>().clearTask().newTask())
+        }*/
     }
 }

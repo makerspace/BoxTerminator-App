@@ -10,6 +10,6 @@ interface TerminatorApi {
     fun login(@Body request: LoginRequest): Observable<LoginResponse>
 
     @GET("multiaccess/box-terminator/member")
-    fun getMember(@Header("Bearer") token : String, @Query("member_number") memberNumber: String)
+    fun getMember(@Header("Authorization") token : String, @Query("member_number") memberNumber: Int) : Observable<MemberResponse>
 
 }

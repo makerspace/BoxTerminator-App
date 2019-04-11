@@ -3,6 +3,7 @@ package stockholm.makerspace.boxterminator.utils
 import android.content.SharedPreferences
 import org.joda.time.DateTime
 import org.koin.core.KoinComponent
+import timber.log.Timber
 
 const val TOKEN = "token"
 const val EXPIRY_DATE = "expiryDate"
@@ -20,6 +21,9 @@ class SkynetDatastore(private var sharedPreferences: SharedPreferences) : KoinCo
     fun hasSessionExpired(): Boolean {
         val expiryDate = DateTime(sharedPreferences.getString(EXPIRY_DATE, null))
         val now = DateTime()
-        return expiryDate.isEqual(now) || expiryDate.isAfter(now)
+        Timber.d("Expiry date $expiryDate and now $now")
+        return expiryDate.isEqual(now) || expiryDate.isBefore(now)
     }
+
+    fun token(): String? = sharedPreferences.getString(TOKEN, null)
 }

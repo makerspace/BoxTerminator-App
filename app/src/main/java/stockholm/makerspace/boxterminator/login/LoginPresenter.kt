@@ -8,6 +8,7 @@ import org.koin.core.inject
 import stockholm.makerspace.boxterminator.network.LoginRequest
 import stockholm.makerspace.boxterminator.network.Skynet
 import stockholm.makerspace.boxterminator.utils.SkynetDatastore
+import timber.log.Timber
 
 
 class LoginPresenter(private var view: LoginContract.View) : LoginContract.Presenter, KoinComponent {
@@ -26,7 +27,8 @@ class LoginPresenter(private var view: LoginContract.View) : LoginContract.Prese
                     datastore.saveSkynetToken(it.access_token)
                     view.allowAccess()
                 },
-                { view.showError(it.message) }
+                { Timber.d("Skynet error ${it.message}")
+                    view.showError(it.message) }
             )
     }
 }

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BoxTerminator</string>
+    <string name="burger_open">Drawer open</string>
+    <string name="burger_close">Drawer close</string>
 </resources>

@@ -59,7 +59,6 @@ class CameraActivity : AppCompatActivity() {
         // Callbacks
         codeScanner?.decodeCallback = DecodeCallback {
             runOnUiThread {
-                Toast.makeText(this, "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
                 val qrIntent = Intent()
                 qrIntent.putExtra(QR_EXTRA, it.text)
                 setResult(Activity.RESULT_OK, qrIntent)
@@ -75,9 +74,7 @@ class CameraActivity : AppCompatActivity() {
                 ).show()
             }
         }
-
         codeScanner?.startPreview()
-
     }
 
     override fun onResume() {

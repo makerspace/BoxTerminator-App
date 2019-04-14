@@ -24,7 +24,6 @@ class LoginPresenter(private var view: LoginContract.View) : LoginContract.Prese
             .subscribe(
                 {
                     datastore.saveSkynetToken(it.access_token)
-                    datastore.saveTokenExpiryDate(it.expires)
                     view.allowAccess()
                 },
                 { view.showError(it.message) }

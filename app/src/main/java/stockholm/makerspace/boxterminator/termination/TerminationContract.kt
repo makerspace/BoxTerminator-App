@@ -15,5 +15,6 @@ interface TerminationContract {
         fun showExpiredStatus(member: Member?)
         fun showTerminateStatus(member: Member?)
         fun loginToSkynet()
+        fun showError(message: String?)
     }
 }

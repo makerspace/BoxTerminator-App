@@ -7,6 +7,7 @@ import org.koin.core.inject
 import stockholm.makerspace.boxterminator.models.QrScanResult
 import stockholm.makerspace.boxterminator.network.Skynet
 import stockholm.makerspace.boxterminator.network.TerminationStatus
+import stockholm.makerspace.boxterminator.network.ValidateBoxRequest
 import stockholm.makerspace.boxterminator.utils.SkynetDatastore
 import timber.log.Timber
 
@@ -17,25 +18,28 @@ class TerminationPresenter(private val view: TerminationContract.View) : Termina
     private val dataStore: SkynetDatastore by inject()
 
     override fun validateBox(scanResult: QrScanResult) {
-        val token = dataStore.token()
+        val token = dataStore.skynetToken()
         token?.let {
-            skynet.getClient().getMember("Bearer $token", scanResult.member_number)
+            val validateRequest = ValidateBoxRequest(scanResult.member_number, 1111)
+            skynet.getClient().getMember("Bearer $token", validateRequest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
 
-                    {val member = it.data
-                        when(member.status) {
-                        TerminationStatus.ACTIVE -> view.showActiveStatus(member)
-                        TerminationStatus.EXPIRED -> view.showExpiredStatus(member)
-                        TerminationStatus.TERMINATE -> view.showTerminateStatus(member)
+                    {
+                        val member = it.data
+                        when (member.status) {
+                            TerminationStatus.ACTIVE -> view.showActiveStatus(member)
+                            TerminationStatus.EXPIRED -> view.showExpiredStatus(member)
+                            TerminationStatus.TERMINATE -> view.showTerminateStatus(member)
+                        }
+                        Timber.d("response success ${member.name} expire date ${member.expire_date}, terimante date ${member.terminate_date}, status ${member.status}")
+                    },
+                    {
+                        view.showError(it.message)
+                        Timber.d("Error while getting member ${it.message}")
                     }
-                        Timber.d("response success ${member.name} expire date ${member.expire_date}, terimante date ${member.terminate_date}, status ${member.status}") },
-                    {   view.loginToSkynet()
-                        Timber.d("Error while getting member ${it.message}") }
                 )
         }
     }
-
-
 }

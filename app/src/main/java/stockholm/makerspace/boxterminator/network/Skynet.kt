@@ -8,7 +8,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-//https://api.dev.makerspace.se/oauth/token
+const val makerAdminUrl = "https://api.dev.makerspace.se/"
+const val localMakerAdminUrl = "http://10.20.0.223:8010/"
 
 class Skynet {
 
@@ -28,7 +29,7 @@ class Skynet {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(okHttpClient)
-            .baseUrl("https://api.dev.makerspace.se/")
+            .baseUrl(localMakerAdminUrl)
             .build()
         return retrofit.create(TerminatorApi::class.java)
     }

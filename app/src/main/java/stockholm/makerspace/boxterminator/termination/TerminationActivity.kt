@@ -17,7 +17,8 @@ import stockholm.makerspace.boxterminator.camera.QR_EXTRA
 import stockholm.makerspace.boxterminator.login.LoginActivity
 import stockholm.makerspace.boxterminator.models.QrScanResult
 import stockholm.makerspace.boxterminator.network.Member
-import stockholm.makerspace.boxterminator.network.MemberResponse
+import stockholm.makerspace.boxterminator.termination.result.TERMINATION_EXTRA
+import stockholm.makerspace.boxterminator.termination.result.TerminationResultActivity
 import timber.log.Timber
 
 const val CAMERA_REQUEST = 3333
@@ -32,8 +33,6 @@ class TerminationActivity : AppCompatActivity(), TerminationContract.View {
         terminationBtn.setOnClickListener { startActivityForResult(intentFor<CameraActivity>(),
             CAMERA_REQUEST
         ) }
-        //goodBtn.setOnClickListener { startActivity(intentFor<TerminationResultActivity>(TERMINATION_EXTRA to 1)) }
-        //badBtn.setOnClickListener { startActivity(intentFor<TerminationResultActivity>(TERMINATION_EXTRA to 0)) }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -41,7 +40,6 @@ class TerminationActivity : AppCompatActivity(), TerminationContract.View {
         if(requestCode == CAMERA_REQUEST){
             if(resultCode == Activity.RESULT_OK){
                 val qrCodeResult = data?.getStringExtra(QR_EXTRA)
-                qrCodeResultText.text = qrCodeResult
                 val scanResult : QrScanResult? = Gson().fromJson(qrCodeResult, QrScanResult::class.java)
                 scanResult?.let {
                     Timber.d("Scan result member number ${scanResult.member_number}, version ${scanResult.v}")
@@ -52,18 +50,25 @@ class TerminationActivity : AppCompatActivity(), TerminationContract.View {
     }
 
     override fun showActiveStatus(member: Member?) {
-        startActivity(intentFor<TerminationResultActivity>(TERMINATION_EXTRA to member))
+        startActivity(intentFor<TerminationResultActivity>(
+            TERMINATION_EXTRA to member))
     }
 
     override fun showExpiredStatus(member: Member?) {
-        startActivity(intentFor<TerminationResultActivity>(TERMINATION_EXTRA to member))
+        startActivity(intentFor<TerminationResultActivity>(
+            TERMINATION_EXTRA to member))
     }
 
     override fun showTerminateStatus(member: Member?) {
-        startActivity(intentFor<TerminationResultActivity>(TERMINATION_EXTRA to member))
+        startActivity(intentFor<TerminationResultActivity>(
+            TERMINATION_EXTRA to member))
     }
 
     override fun loginToSkynet() {
         startActivity(intentFor<LoginActivity>().clearTask().newTask())
+    }
+
+    override fun showError(message: String?) {
+        qrCodeResultText.text = "Skynet returned an error $message"
     }
 }

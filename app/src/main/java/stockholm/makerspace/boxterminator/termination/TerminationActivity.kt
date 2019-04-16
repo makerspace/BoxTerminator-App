@@ -50,9 +50,9 @@ class TerminationActivity : AppCompatActivity(), TerminationContract.View, Navig
         if(requestCode == CAMERA_REQUEST){
             if(resultCode == Activity.RESULT_OK){
                 val qrCodeResult = data?.getStringExtra(QR_EXTRA)
+                Timber.d("QR  scan result $qrCodeResult")
                 val scanResult : QrScanResult? = Gson().fromJson(qrCodeResult, QrScanResult::class.java)
                 scanResult?.let {
-                    Timber.d("Scan result member number ${scanResult.member_number}, version ${scanResult.v}")
                     presenter.validateBox(scanResult)
                 }
             }

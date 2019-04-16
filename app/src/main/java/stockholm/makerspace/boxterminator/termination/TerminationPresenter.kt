@@ -20,7 +20,7 @@ class TerminationPresenter(private val view: TerminationContract.View) : Termina
     override fun validateBox(scanResult: QrScanResult) {
         val token = dataStore.skynetToken()
         token?.let {
-            val validateRequest = ValidateBoxRequest(scanResult.member_number, 1111)
+            val validateRequest = ValidateBoxRequest(scanResult.member_number, scanResult.unix_timestamp)
             skynet.getClient().getMember("Bearer $token", validateRequest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

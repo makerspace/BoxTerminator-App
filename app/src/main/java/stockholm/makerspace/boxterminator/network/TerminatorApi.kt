@@ -10,11 +10,17 @@ interface TerminatorApi {
     fun login(@Body request: LoginRequest): Observable<LoginResponse>
 
     @POST("multiaccess/box-terminator/validate-box")
-    fun getMember(@Header("Authorization") token : String,
-                  @Body request: ValidateBoxRequest) : Observable<MemberResponse>
+    fun getMember(
+        @Header("Authorization") token: String,
+        @Body request: ValidateBoxRequest
+    ): Observable<MemberResponse>
 
     @POST("multiaccess/box-terminator/nag")
-    fun nag(@Header("Authorization") token : String,
-            @Body request: NagRequest): Observable<Unit>
+    fun nag(
+        @Header("Authorization") token: String,
+        @Body request: NagRequest
+    ): Observable<Unit>
 
+    @GET("multiaccess/box-terminator/session-list")
+    fun getSessionList(@Header("Authorization") token: String): Observable<Unit>
 }

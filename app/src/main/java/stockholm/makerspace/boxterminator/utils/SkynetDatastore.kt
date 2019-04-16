@@ -41,4 +41,6 @@ class SkynetDatastore(private var sharedPreferences: SharedPreferences) : KoinCo
     fun refreshSession() {
         sharedPreferences.edit().putLong(SESSION_TIMESTAMP, System.currentTimeMillis()).apply()
     }
+
+    fun terminationSessions(): Set<String> = sharedPreferences.getStringSet(TOKENS, mutableSetOf())
 }

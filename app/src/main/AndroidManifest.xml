@@ -29,6 +29,8 @@
         <activity android:name=".termination.result.TerminationResultActivity"
                   android:screenOrientation="portrait"/>
         <activity android:name=".login.LoginActivity"/>
+        <activity android:name=".terminationsessions.TerminationSessionsActivity"/>
+        <activity android:name=".terminationsessions.sessionlist.ScanSessionListActivity"/>
     </application>
 
 </manifest>

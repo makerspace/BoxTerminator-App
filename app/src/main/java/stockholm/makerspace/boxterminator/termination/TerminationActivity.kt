@@ -24,6 +24,7 @@ import stockholm.makerspace.boxterminator.models.QrScanResult
 import stockholm.makerspace.boxterminator.network.Member
 import stockholm.makerspace.boxterminator.termination.result.TERMINATION_EXTRA
 import stockholm.makerspace.boxterminator.termination.result.TerminationResultActivity
+import stockholm.makerspace.boxterminator.terminationsessions.TerminationSessionsActivity
 import timber.log.Timber
 
 const val CAMERA_REQUEST = 3333
@@ -62,7 +63,7 @@ class TerminationActivity : AppCompatActivity(), TerminationContract.View, Navig
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.nav_termination -> { }
-            R.id.nav_sessions -> { }
+            R.id.nav_sessions -> { startActivity(intentFor<TerminationSessionsActivity>()) }
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true

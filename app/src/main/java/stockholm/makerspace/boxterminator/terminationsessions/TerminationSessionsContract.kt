@@ -1,13 +1,15 @@
 package stockholm.makerspace.boxterminator.terminationsessions
 
+import stockholm.makerspace.boxterminator.models.Box
+
 
 interface TerminationSessionsContract {
 
     interface Presenter {
-        fun getSessions()
+        fun getTerminations()
     }
 
     interface View {
-        fun loadSessionList(timestampTokenList: List<Pair<String, String>>)
+        fun showScans(scans: List<Box>)
     }
 }

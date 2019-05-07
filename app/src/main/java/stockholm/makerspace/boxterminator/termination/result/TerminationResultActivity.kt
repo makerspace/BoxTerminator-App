@@ -11,8 +11,8 @@ import org.joda.time.Days
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import stockholm.makerspace.boxterminator.R
-import stockholm.makerspace.boxterminator.network.Member
-import stockholm.makerspace.boxterminator.network.TerminationStatus
+import stockholm.makerspace.boxterminator.models.Member
+import stockholm.makerspace.boxterminator.models.TerminationStatus
 
 const val TERMINATION_EXTRA = "termination_extra"
 

@@ -1,7 +1,7 @@
 package stockholm.makerspace.boxterminator.termination
 
 import stockholm.makerspace.boxterminator.models.QrScanResult
-import stockholm.makerspace.boxterminator.network.Member
+import stockholm.makerspace.boxterminator.models.Member
 
 
 interface TerminationContract {

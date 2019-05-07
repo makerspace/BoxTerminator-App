@@ -8,8 +8,10 @@ import org.jetbrains.anko.intentFor
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import stockholm.makerspace.boxterminator.R
+import stockholm.makerspace.boxterminator.models.Box
 import stockholm.makerspace.boxterminator.terminationsessions.sessionlist.SESSION_TOKEN_EXTRA
 import stockholm.makerspace.boxterminator.terminationsessions.sessionlist.ScanSessionListActivity
+import stockholm.makerspace.boxterminator.utils.TerminationListAdapter
 import stockholm.makerspace.boxterminator.utils.TerminationSessionAdapter
 import timber.log.Timber
 
@@ -22,12 +24,11 @@ class TerminationSessionsActivity : AppCompatActivity(), TerminationSessionsCont
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.termination_sessions_activity)
-        presenter.getSessions()
+        presenter.getTerminations()
     }
 
-    override fun loadSessionList(timestampTokenList: List<Pair<String, String>>) {
-        val sessionsAdapter = TerminationSessionAdapter(timestampTokenList)
-        sessionsAdapter.setSessionClickListener(this)
+    override fun showScans(scans : List<Box>) {
+        val sessionsAdapter = TerminationListAdapter(scans)
         scanSessionRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         scanSessionRecyclerView.adapter = sessionsAdapter
     }

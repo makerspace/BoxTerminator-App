@@ -6,7 +6,7 @@ import org.koin.core.KoinComponent
 import org.koin.core.inject
 import stockholm.makerspace.boxterminator.models.QrScanResult
 import stockholm.makerspace.boxterminator.network.Skynet
-import stockholm.makerspace.boxterminator.network.TerminationStatus
+import stockholm.makerspace.boxterminator.models.TerminationStatus
 import stockholm.makerspace.boxterminator.network.ValidateBoxRequest
 import stockholm.makerspace.boxterminator.utils.SkynetDatastore
 import timber.log.Timber

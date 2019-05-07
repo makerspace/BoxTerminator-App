@@ -21,6 +21,6 @@ interface TerminatorApi {
         @Body request: NagRequest
     ): Observable<Unit>
 
-    @GET("multiaccess/box-terminator/session-list")
-    fun getSessionList(@Header("Authorization") token: String): Observable<Unit>
+    @GET("multiaccess/box-terminator/boxes")
+    fun getSessionList(@Header("Authorization") token: String): Observable<BoxesResponse>
 }

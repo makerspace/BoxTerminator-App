@@ -21,7 +21,7 @@ import stockholm.makerspace.boxterminator.camera.CameraActivity
 import stockholm.makerspace.boxterminator.camera.QR_EXTRA
 import stockholm.makerspace.boxterminator.login.LoginActivity
 import stockholm.makerspace.boxterminator.models.QrScanResult
-import stockholm.makerspace.boxterminator.network.Member
+import stockholm.makerspace.boxterminator.models.Member
 import stockholm.makerspace.boxterminator.termination.result.TERMINATION_EXTRA
 import stockholm.makerspace.boxterminator.termination.result.TerminationResultActivity
 import stockholm.makerspace.boxterminator.terminationsessions.TerminationSessionsActivity

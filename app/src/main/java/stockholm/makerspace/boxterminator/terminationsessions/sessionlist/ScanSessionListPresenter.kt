@@ -8,7 +8,7 @@ import stockholm.makerspace.boxterminator.network.Skynet
 import timber.log.Timber
 
 
-class ScanSessionListPresenter(view: ScanSessionListContract.View) : ScanSessionListContract.Presenter, KoinComponent {
+class ScanSessionListPresenter(private val view: ScanSessionListContract.View) : ScanSessionListContract.Presenter, KoinComponent {
 
     private val skynet: Skynet by inject()
 
@@ -18,11 +18,11 @@ class ScanSessionListPresenter(view: ScanSessionListContract.View) : ScanSession
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    { Timber.d("Session list $it") },
+                    { Timber.d("Session list $it")
+                        view.showScans(listOf())
+                    },
                     { Timber.d("Error while getting session list ${it.message}") }
                 )
         }
     }
-
-
 }

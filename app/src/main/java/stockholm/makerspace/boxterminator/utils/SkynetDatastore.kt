@@ -28,6 +28,7 @@ class SkynetDatastore(private var sharedPreferences: SharedPreferences) : KoinCo
     fun skynetToken(): String? = sharedPreferences.getString(CURRENT_TOKEN, null)
 
     fun isTokenActive(): Boolean {
+        if (skynetToken() == null) return false
         val now = DateTime.now()
         val lastSessionUse = getLastUsedSessionTimestamp()
         return Hours.hoursBetween(lastSessionUse, now).hours <= sessionTimeoutInHours

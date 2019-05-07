@@ -26,5 +26,6 @@ class ScanSessionListActivity : AppCompatActivity(), ScanSessionListContract.Vie
     override fun showScans(terminations: List<Box>) {
         val adapter = TerminationListAdapter(terminations)
         scansRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        scansRecyclerView.adapter = adapter
     }
 }

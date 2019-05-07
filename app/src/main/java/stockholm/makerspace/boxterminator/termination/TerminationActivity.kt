@@ -11,9 +11,7 @@ import android.view.MenuItem
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.burger_menu_activity.*
 import kotlinx.android.synthetic.main.termination_activity.*
-import org.jetbrains.anko.clearTask
-import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.newTask
+import org.jetbrains.anko.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import stockholm.makerspace.boxterminator.R
@@ -92,6 +90,8 @@ class TerminationActivity : AppCompatActivity(), TerminationContract.View, Navig
     }
 
     override fun showError(message: String?) {
-//        qrCodeResultText.text = "Skynet returned an error $message"
+        alert("$message", "Error") {
+            okButton { }
+        }.show()
     }
 }

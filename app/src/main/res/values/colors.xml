@@ -3,4 +3,17 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="memberBoxBackground">#212121AA</color>
+    <color name="memberBoxMembershipValid">#63D81B</color>
+    <color name="memberBoxMembershipValidSecondary">#51B315</color>
+    <color name="memberBoxMembershipInvalid">#D8C51B</color>
+    <color name="memberBoxMembershipInvalidSecondary">#A29310</color>
+    <color name="memberBoxMembershipVeryOld">#D63024</color>
+    <color name="memberBoxMembershipVeryOldSecondary">#9E1E15</color>
+
+    <color name="memberBox2Background">#212121</color>
+    <color name="memberBox2Back">#0A0A0A</color>
+
+    <color name="white">#FFFFFF</color>
 </resources>

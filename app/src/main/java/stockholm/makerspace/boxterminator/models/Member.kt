@@ -11,5 +11,6 @@ data class Member(
     val expire_date: String, //labb membership
     val terminate_date: String, //expire date + 45 days
     val status: TerminationStatus,
-    val last_nag_at: String
+    val last_nag_at: String?,  // Last time the member was nagged
+    val last_check_at: String? // Last time this QR code was scanned
 ) : Parcelable

@@ -28,6 +28,7 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
         val member: Member = intent.extras.getParcelable(TERMINATION_EXTRA)
         member_name.text = member.name
         member_number.text = member.member_number.toString()
+        val now = DateTime()
 
         when (member.status) {
             TerminationStatus.ACTIVE -> {
@@ -44,7 +45,6 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
                 member_remaining_background.background = resources.getDrawable(R.color.memberBoxMembershipInvalid, null)
                 terminationResultBtn.background= resources.getDrawable(R.color.memberBoxMembershipInvalidSecondary, null)
 
-                val now = DateTime()
                 val expireDate = DateTime(member.expire_date)
                 val daysInBetween = Days.daysBetween(expireDate, now).days
                 member_remaining.text = "$daysInBetween"
@@ -66,7 +66,6 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
                 member_remaining_background.background = resources.getDrawable(R.color.memberBoxMembershipVeryOld, null)
                 terminationResultBtn.background = resources.getDrawable(R.color.memberBoxMembershipVeryOldSecondary, null)
 
-                val now = DateTime()
                 val expireDate = DateTime(member.expire_date)
                 val daysInBetween = Days.daysBetween(expireDate, now).days
                 member_remaining.text = "$daysInBetween"
@@ -83,6 +82,21 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
                 }
             }
         }
+
+        if (member.last_nag_at != null) {
+            val lastNagDate = DateTime(member.last_nag_at)
+            val daysSinceNag = Days.daysBetween(lastNagDate, now).days
+            if (daysSinceNag == 0) {
+                member_last_nag.text = "Last nagged earlier today"
+            } else if (daysSinceNag == 1) {
+                member_last_nag.text = "Last nagged yesterday"
+            } else {
+                member_last_nag.text = "Last nagged $daysSinceNag days ago"
+            }
+        } else {
+            member_last_nag.text = "Never nagged before"
+        }
+
         terminationBackBtn.setOnClickListener {
             setResult(Activity.RESULT_OK)
             finish()

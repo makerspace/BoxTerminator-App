@@ -36,6 +36,9 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
                 member_validity.imageTintList = resources.getColorStateList(R.color.memberBoxMembershipValid, null)
                 member_remaining_background.background = resources.getDrawable(R.color.memberBoxMembershipValid, null)
                 terminationResultBtn.background= resources.getDrawable(R.color.memberBoxMembershipValidSecondary, null)
+                terminationResultBtn.visibility = View.INVISIBLE
+                member_last_nag.visibility = View.INVISIBLE
+
                 member_remaining.text = "${member.expire_date}"
                 member_remaining_sub.text = "Expiration date"
             }
@@ -44,6 +47,8 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
                 member_validity.imageTintList = resources.getColorStateList(R.color.memberBoxMembershipInvalid, null)
                 member_remaining_background.background = resources.getDrawable(R.color.memberBoxMembershipInvalid, null)
                 terminationResultBtn.background= resources.getDrawable(R.color.memberBoxMembershipInvalidSecondary, null)
+                terminationResultBtn.visibility = View.VISIBLE
+                member_last_nag.visibility = View.VISIBLE
 
                 val expireDate = DateTime(member.expire_date)
                 val daysInBetween = Days.daysBetween(expireDate, now).days
@@ -65,6 +70,8 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
                 member_validity.imageTintList = resources.getColorStateList(R.color.memberBoxMembershipVeryOld, null)
                 member_remaining_background.background = resources.getDrawable(R.color.memberBoxMembershipVeryOld, null)
                 terminationResultBtn.background = resources.getDrawable(R.color.memberBoxMembershipVeryOldSecondary, null)
+                terminationResultBtn.visibility = View.VISIBLE
+                member_last_nag.visibility = View.VISIBLE
 
                 val expireDate = DateTime(member.expire_date)
                 val daysInBetween = Days.daysBetween(expireDate, now).days

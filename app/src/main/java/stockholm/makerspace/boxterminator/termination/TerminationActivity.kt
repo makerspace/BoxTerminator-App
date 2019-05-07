@@ -28,6 +28,7 @@ import stockholm.makerspace.boxterminator.terminationsessions.TerminationSession
 import timber.log.Timber
 
 const val CAMERA_REQUEST = 3333
+const val SCAN_RESULT_REQUEST = 3334
 
 class TerminationActivity : AppCompatActivity(), TerminationContract.View, NavigationView.OnNavigationItemSelectedListener {
 
@@ -58,6 +59,12 @@ class TerminationActivity : AppCompatActivity(), TerminationContract.View, Navig
                 }
             }
         }
+        if(requestCode == SCAN_RESULT_REQUEST) {
+            if (resultCode == Activity.RESULT_OK) {
+                // Start scanning again
+                startActivityForResult(intentFor<CameraActivity>(), CAMERA_REQUEST);
+            }
+        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -69,26 +76,22 @@ class TerminationActivity : AppCompatActivity(), TerminationContract.View, Navig
         return true
     }
 
-    override fun showActiveStatus(member: Member?) {
-        startActivity(intentFor<TerminationResultActivity>(
-            TERMINATION_EXTRA to member))
+    override fun showActiveStatus(member: Member) {
+        startActivityForResult(intentFor<TerminationResultActivity>(
+            TERMINATION_EXTRA to member), SCAN_RESULT_REQUEST)
     }
 
-    override fun showExpiredStatus(member: Member?) {
-        startActivity(intentFor<TerminationResultActivity>(
-            TERMINATION_EXTRA to member))
+    override fun showExpiredStatus(member: Member) {
+        startActivityForResult(intentFor<TerminationResultActivity>(
+            TERMINATION_EXTRA to member), SCAN_RESULT_REQUEST)
     }
 
-    override fun showTerminateStatus(member: Member?) {
-        startActivity(intentFor<TerminationResultActivity>(
-            TERMINATION_EXTRA to member))
-    }
-
-    override fun loginToSkynet() {
-        startActivity(intentFor<LoginActivity>().clearTask().newTask())
+    override fun showTerminateStatus(member: Member) {
+        startActivityForResult(intentFor<TerminationResultActivity>(
+            TERMINATION_EXTRA to member), SCAN_RESULT_REQUEST)
     }
 
     override fun showError(message: String?) {
-        qrCodeResultText.text = "Skynet returned an error $message"
+//        qrCodeResultText.text = "Skynet returned an error $message"
     }
 }

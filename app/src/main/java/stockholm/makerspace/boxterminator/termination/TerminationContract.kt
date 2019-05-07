@@ -11,10 +11,9 @@ interface TerminationContract {
     }
 
     interface View {
-        fun showActiveStatus(member: Member?)
-        fun showExpiredStatus(member: Member?)
-        fun showTerminateStatus(member: Member?)
-        fun loginToSkynet()
+        fun showActiveStatus(member: Member)
+        fun showExpiredStatus(member: Member)
+        fun showTerminateStatus(member: Member)
         fun showError(message: String?)
     }
 }

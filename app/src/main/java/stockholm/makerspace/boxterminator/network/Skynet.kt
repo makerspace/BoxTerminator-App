@@ -22,6 +22,7 @@ class Skynet : KoinComponent {
         skynetDatastore.refreshSession()
 
         val gson = GsonBuilder()
+            .setDateFormat("yyyy-MM-dd\'T\'HH:mm:ss")
             .create()
 
         val logging = HttpLoggingInterceptor()

@@ -16,3 +16,7 @@ fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false):
 fun DateTime.simpleDateString(): String {
     return SimpleDateFormat("yyyy-MM-dd", Locale.UK).format(this.toDate())
 }
+
+fun Date.simpleDateStringWithTime(): String {
+    return SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.UK).format(this)
+}

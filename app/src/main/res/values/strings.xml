@@ -3,4 +3,7 @@
     <string name="burger_open">Drawer open</string>
     <string name="burger_close">Drawer close</string>
     <string name="member_not_found">Member does not exist</string>
+    <string name="last_scan">Last scan %1$s</string>
+    <string name="last_nag">Last nag %1$s</string>
+    <string name="expiry_date">Expiry date %1$s</string>
 </resources>

@@ -28,7 +28,8 @@ class TerminationSessionsActivity : AppCompatActivity(), TerminationSessionsCont
     }
 
     override fun showScans(scans : List<Box>) {
-        val sessionsAdapter = TerminationListAdapter(scans)
+        val sortedScans = scans.sortedBy { it.expire_date }
+        val sessionsAdapter = TerminationListAdapter(sortedScans)
         scanSessionRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         scanSessionRecyclerView.adapter = sessionsAdapter
     }

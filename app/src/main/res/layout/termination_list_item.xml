@@ -8,46 +8,63 @@
 
 
     <TextView
-            android:text="name"
+            tools:text="name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
             android:id="@+id/boxName" android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"/>
+            android:layout_marginStart="8dp" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/boxLastScan"/>
     <TextView
-            android:text="member id"
-            android:textSize="18sp"
+            tools:text="member id"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/boxMemberId" android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toEndOf="@+id/boxName"
             android:layout_marginStart="8dp"/>
     <TextView
-            android:text="status"
+            tools:text="status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/boxStatus" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"/>
-    <TextView
-            android:text="last scan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/boxLastScan" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/boxName"/>
-    <TextView
-            android:text="last nag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/boxLastNag" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/boxLastScan" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" android:layout_marginBottom="8dp"
+            android:id="@+id/boxStatus"
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
     <TextView
-            android:text="expire date"
+            android:text="@string/last_scan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/boxExpireDate" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/boxStatus"/>
+            android:textColor="@android:color/black"
+            android:id="@+id/boxLastScan" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/boxLastNag"/>
+    <TextView
+            android:text="@string/last_nag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:id="@+id/boxLastNag"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/boxExpireDate"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"/>
+    <TextView
+            android:text="@string/expiry_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:id="@+id/boxExpireDate"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintBottom_toTopOf="@+id/view2"
+            android:layout_marginBottom="16dp"/>
+
+    <View android:layout_width="match_parent" android:layout_height="2dp"
+          android:background="@android:color/darker_gray"
+          app:layout_constraintStart_toStartOf="@+id/boxStatus"
+          app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"
+          android:id="@+id/view2" android:layout_marginTop="16dp"
+          app:layout_constraintTop_toBottomOf="@+id/boxExpireDate"/>
 </android.support.constraint.ConstraintLayout>

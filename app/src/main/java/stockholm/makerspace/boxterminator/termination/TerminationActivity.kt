@@ -9,6 +9,7 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
 import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 import kotlinx.android.synthetic.main.burger_menu_activity.*
 import kotlinx.android.synthetic.main.termination_activity.*
 import org.jetbrains.anko.*
@@ -51,9 +52,17 @@ class TerminationActivity : AppCompatActivity(), TerminationContract.View, Navig
             if(resultCode == Activity.RESULT_OK){
                 val qrCodeResult = data?.getStringExtra(QR_EXTRA)
                 Timber.d("QR  scan result $qrCodeResult")
-                val scanResult : QrScanResult? = Gson().fromJson(qrCodeResult, QrScanResult::class.java)
+                
+                val scanResult : QrScanResult? = try {
+                    Gson().fromJson(qrCodeResult, QrScanResult::class.java)
+                } catch (e: JsonSyntaxException) {
+                    null
+                }
+
                 scanResult?.let {
                     presenter.validateBox(scanResult)
+                } ?: run {
+                    showError("Gick inte att läsa QR koden. Skanna rätt nästa gång!!!")
                 }
             }
         }

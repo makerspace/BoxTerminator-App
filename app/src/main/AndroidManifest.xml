@@ -31,6 +31,7 @@
         <activity android:name=".login.LoginActivity"/>
         <activity android:name=".terminationsessions.TerminationSessionsActivity"/>
         <activity android:name=".terminationsessions.sessionlist.ScanSessionListActivity"/>
+        <activity android:name=".terminationsessions.doubles.DoublesActivity"/>
     </application>
 
 </manifest>

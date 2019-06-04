@@ -24,6 +24,7 @@ import stockholm.makerspace.boxterminator.models.Member
 import stockholm.makerspace.boxterminator.termination.result.TERMINATION_EXTRA
 import stockholm.makerspace.boxterminator.termination.result.TerminationResultActivity
 import stockholm.makerspace.boxterminator.terminationsessions.TerminationSessionsActivity
+import stockholm.makerspace.boxterminator.terminationsessions.doubles.DoublesActivity
 import timber.log.Timber
 
 const val CAMERA_REQUEST = 3333
@@ -52,7 +53,7 @@ class TerminationActivity : AppCompatActivity(), TerminationContract.View, Navig
             if(resultCode == Activity.RESULT_OK){
                 val qrCodeResult = data?.getStringExtra(QR_EXTRA)
                 Timber.d("QR  scan result $qrCodeResult")
-                
+
                 val scanResult : QrScanResult? = try {
                     Gson().fromJson(qrCodeResult, QrScanResult::class.java)
                 } catch (e: JsonSyntaxException) {
@@ -78,6 +79,7 @@ class TerminationActivity : AppCompatActivity(), TerminationContract.View, Navig
         when(item.itemId){
             R.id.nav_termination -> { }
             R.id.nav_sessions -> { startActivity(intentFor<TerminationSessionsActivity>()) }
+            R.id.nav_doubles -> { startActivity(intentFor<DoublesActivity>()) }
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true

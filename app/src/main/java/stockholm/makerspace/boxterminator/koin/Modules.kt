@@ -12,6 +12,8 @@ import stockholm.makerspace.boxterminator.termination.result.TerminationResultCo
 import stockholm.makerspace.boxterminator.termination.result.TerminationResultPresenter
 import stockholm.makerspace.boxterminator.terminationsessions.TerminationSessionsContract
 import stockholm.makerspace.boxterminator.terminationsessions.TerminationSessionsPresenter
+import stockholm.makerspace.boxterminator.terminationsessions.doubles.DoublesContract
+import stockholm.makerspace.boxterminator.terminationsessions.doubles.DoublesPresenter
 import stockholm.makerspace.boxterminator.terminationsessions.sessionlist.ScanSessionListContract
 import stockholm.makerspace.boxterminator.terminationsessions.sessionlist.ScanSessionListPresenter
 import stockholm.makerspace.boxterminator.utils.SkynetDatastore
@@ -23,6 +25,7 @@ val applicationModule = module(override = true) {
     factory<TerminationResultContract.Presenter> { (view: TerminationResultContract.View) -> TerminationResultPresenter(view) }
     factory<TerminationSessionsContract.Presenter> { (view: TerminationSessionsContract.View) -> TerminationSessionsPresenter(view) }
     factory<ScanSessionListContract.Presenter> { (view: ScanSessionListContract.View) -> ScanSessionListPresenter(view) }
+    factory<DoublesContract.Presenter> { (view: DoublesContract.View) -> DoublesPresenter(view) }
     single { Skynet() }
     single { SkynetDatastore(androidContext().getSharedPreferences("Arnie", Context.MODE_PRIVATE)) }
 }

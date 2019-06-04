@@ -1,5 +1,6 @@
 package stockholm.makerspace.boxterminator.terminationsessions
 
+import android.annotation.SuppressLint
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.koin.core.KoinComponent
@@ -15,6 +16,7 @@ class TerminationSessionsPresenter(private val view: TerminationSessionsContract
 
     private val skynet : Skynet by inject()
 
+    @SuppressLint("CheckResult")
     override fun getTerminations() {
         val token = skynetDatastore.skynetToken()
         skynet.getClient().getSessionList("Bearer $token")

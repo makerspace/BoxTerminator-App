@@ -16,7 +16,7 @@ class TerminationResultPresenter(private val view: TerminationResultContract.Vie
     private val skynet: Skynet by inject()
     private val skynetDatastore: SkynetDatastore by inject()
 
-    override fun nag(member_number: Int, box_label_id: Int) {
+    override fun nag(member_number: Int, box_label_id: Int, nagType: String) {
         val skynetToken = skynetDatastore.skynetToken()
         skynetToken?.let { token ->
             val nagRequest = NagRequest(member_number, box_label_id)

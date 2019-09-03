@@ -12,3 +12,7 @@ interface TerminationResultContract {
         fun showNagError(message: String?)
     }
 }
+
+const val NAG_TYPE_WARNING = "nag-warning"
+const val NAG_TYPE_LAST_WARNING = "nag-last-warning"
+const val NAG_TYPE_TERMINATED = "nag-terminated"

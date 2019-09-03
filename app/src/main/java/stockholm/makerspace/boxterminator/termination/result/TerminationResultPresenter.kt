@@ -19,7 +19,7 @@ class TerminationResultPresenter(private val view: TerminationResultContract.Vie
     override fun nag(member_number: Int, box_label_id: Int, nagType: String) {
         val skynetToken = skynetDatastore.skynetToken()
         skynetToken?.let { token ->
-            val nagRequest = NagRequest(member_number, box_label_id)
+            val nagRequest = NagRequest(member_number, box_label_id, nagType)
             skynet.getClient().nag("Bearer $token", nagRequest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

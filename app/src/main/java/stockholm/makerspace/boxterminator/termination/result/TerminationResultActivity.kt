@@ -60,7 +60,7 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
                         presenter.nag(
                             member.member_number,
                             member.box_label_id,
-                            "nag-warning"
+                            NAG_TYPE_WARNING
                         )
                     }
                     visibility = View.VISIBLE
@@ -81,10 +81,10 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
 
                 terminationResultBtn.apply {
                     setOnClickListener {
-                        var nagType = "nag-last-warning"
-                        if(daysInBetween > 45){
-                            nagType = "nag-terminated"
-                        }
+                        var nagType = NAG_TYPE_LAST_WARNING
+                        /*if(daysInBetween > 45){
+                            nagType = NAG_TYPE_TERMINATED
+                        }*/
                         presenter.nag(
                             member.member_number,
                             member.box_label_id,

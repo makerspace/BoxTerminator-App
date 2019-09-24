@@ -38,7 +38,7 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
                 terminationResultBtn.background= resources.getDrawable(R.color.memberBoxMembershipValidSecondary, null)
                 terminationResultBtn.visibility = View.INVISIBLE
                 member_last_nag.visibility = View.INVISIBLE
-
+                termiante_button.visibility = View.GONE
                 member_remaining.text = "${member.expire_date}"
                 member_remaining_sub.text = "Expiration date"
             }
@@ -48,6 +48,7 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
                 member_remaining_background.background = resources.getDrawable(R.color.memberBoxMembershipInvalid, null)
                 terminationResultBtn.background= resources.getDrawable(R.color.memberBoxMembershipInvalidSecondary, null)
                 terminationResultBtn.visibility = View.VISIBLE
+                termiante_button.visibility = View.GONE
                 member_last_nag.visibility = View.VISIBLE
 
                 val expireDate = DateTime(member.expire_date)
@@ -71,7 +72,6 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
                 member_validity.imageTintList = resources.getColorStateList(R.color.memberBoxMembershipVeryOld, null)
                 member_remaining_background.background = resources.getDrawable(R.color.memberBoxMembershipVeryOld, null)
                 terminationResultBtn.background = resources.getDrawable(R.color.memberBoxMembershipVeryOldSecondary, null)
-                terminationResultBtn.visibility = View.VISIBLE
                 member_last_nag.visibility = View.VISIBLE
 
                 val expireDate = DateTime(member.expire_date)
@@ -82,9 +82,6 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
                 terminationResultBtn.apply {
                     setOnClickListener {
                         var nagType = NAG_TYPE_LAST_WARNING
-                        /*if(daysInBetween > 45){
-                            nagType = NAG_TYPE_TERMINATED
-                        }*/
                         presenter.nag(
                             member.member_number,
                             member.box_label_id,
@@ -92,6 +89,17 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
                         )
                     }
                     visibility = View.VISIBLE
+                }
+                termiante_button.apply {
+                    visibility = View.VISIBLE
+                    setOnClickListener {
+                        var nagType = NAG_TYPE_TERMINATED
+                        presenter.nag(
+                            member.member_number,
+                            member.box_label_id,
+                            nagType
+                        )
+                    }
                 }
             }
         }

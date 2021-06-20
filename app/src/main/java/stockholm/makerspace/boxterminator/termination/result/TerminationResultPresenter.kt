@@ -26,7 +26,7 @@ class TerminationResultPresenter(private val view: TerminationResultContract.Vie
                 .subscribe(
                     {
                         Timber.d("Success")
-                        view.showNagSuccess()
+                        view.showNagSuccess(nagType)
                     },
                     {
                         Timber.d("Error ${it.message}")

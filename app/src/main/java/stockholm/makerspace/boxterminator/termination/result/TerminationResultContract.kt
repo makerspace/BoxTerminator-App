@@ -8,7 +8,7 @@ interface TerminationResultContract {
     }
 
     interface View {
-        fun showNagSuccess()
+        fun showNagSuccess(nagType: String)
         fun showNagError(message: String?)
     }
 }

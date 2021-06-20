@@ -27,36 +27,39 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
         setContentView(R.layout.termination_result_activity)
         val member: Member = intent.extras.getParcelable(TERMINATION_EXTRA)
         member_name.text = member.name
-        member_number.text = member.member_number.toString()
+        member_number.text = "#" + member.member_number.toString()
         val now = DateTime()
 
         when (member.status) {
             TerminationStatus.ACTIVE -> {
                 member_validity.image = getDrawable(R.drawable.ic_noun_tick)
                 member_validity.imageTintList = resources.getColorStateList(R.color.memberBoxMembershipValid, null)
-                member_remaining_background.background = resources.getDrawable(R.color.memberBoxMembershipValid, null)
-                terminationResultBtn.background= resources.getDrawable(R.color.memberBoxMembershipValidSecondary, null)
-                terminationResultBtn.visibility = View.INVISIBLE
+
+                warning_button.backgroundTintList = resources.getColorStateList(R.color.memberBoxMembershipValidSecondary, null)
+                warning_button.visibility = View.INVISIBLE
+
                 member_last_nag.visibility = View.INVISIBLE
-                termiante_button.visibility = View.GONE
-                member_remaining.text = "${member.expire_date}"
-                member_remaining_sub.text = "Expiration date"
+
+                terminate_button.visibility = View.GONE
+
+                member_remaining_text.text = "expires ${member.expire_date}"
             }
             TerminationStatus.EXPIRED -> {
                 member_validity.image = getDrawable(R.drawable.ic_noun_cross)
                 member_validity.imageTintList = resources.getColorStateList(R.color.memberBoxMembershipInvalid, null)
-                member_remaining_background.background = resources.getDrawable(R.color.memberBoxMembershipInvalid, null)
-                terminationResultBtn.background= resources.getDrawable(R.color.memberBoxMembershipInvalidSecondary, null)
-                terminationResultBtn.visibility = View.VISIBLE
-                termiante_button.visibility = View.GONE
+
+                warning_button.backgroundTintList= resources.getColorStateList(R.color.memberBoxMembershipInvalidSecondary, null)
+                warning_button.visibility = View.VISIBLE
+                warning_button_text.text = "Nag"
+
+                terminate_button.visibility = View.GONE
                 member_last_nag.visibility = View.VISIBLE
 
                 val expireDate = DateTime(member.expire_date)
                 val daysInBetween = Days.daysBetween(expireDate, now).days
-                member_remaining.text = "$daysInBetween"
-                member_remaining_sub.text = "Days since expiration"
+                member_remaining_text.text = "${daysInBetween} days since expiration"
 
-                terminationResultBtn.apply {
+                warning_button.apply {
                     setOnClickListener {
                         presenter.nag(
                             member.member_number,
@@ -70,16 +73,17 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
             TerminationStatus.TERMINATE -> {
                 member_validity.image = getDrawable(R.drawable.ic_noun_cross)
                 member_validity.imageTintList = resources.getColorStateList(R.color.memberBoxMembershipVeryOld, null)
-                member_remaining_background.background = resources.getDrawable(R.color.memberBoxMembershipVeryOld, null)
-                terminationResultBtn.background = resources.getDrawable(R.color.memberBoxMembershipVeryOldSecondary, null)
+
                 member_last_nag.visibility = View.VISIBLE
+
+                warning_button.backgroundTintList = resources.getColorStateList(R.color.memberBoxMembershipVeryOld, null)
+                warning_button_text.text = "Final Warning"
 
                 val expireDate = DateTime(member.expire_date)
                 val daysInBetween = Days.daysBetween(expireDate, now).days
-                member_remaining.text = "$daysInBetween"
-                member_remaining_sub.text = "Days since expiration"
+                member_remaining_text.text = "${daysInBetween} days since expiration"
 
-                terminationResultBtn.apply {
+                warning_button.apply {
                     setOnClickListener {
                         var nagType = NAG_TYPE_LAST_WARNING
                         presenter.nag(
@@ -90,7 +94,7 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
                     }
                     visibility = View.VISIBLE
                 }
-                termiante_button.apply {
+                terminate_button.apply {
                     visibility = View.VISIBLE
                     setOnClickListener {
                         var nagType = NAG_TYPE_TERMINATED
@@ -118,7 +122,7 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
             member_last_nag.text = "Never nagged before"
         }
 
-        terminationBackBtn.setOnClickListener {
+        back_button.setOnClickListener {
             setResult(Activity.RESULT_OK)
             finish()
         }
@@ -130,8 +134,20 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
         }.show()
     }
 
-    override fun showNagSuccess() {
-        alert("Nag message sent to member!", "Makeradmin") {
+    override fun showNagSuccess(nagType: String) {
+        var message = ""
+        when (nagType) {
+            NAG_TYPE_WARNING -> {
+                message = "Nag message sent to member!"
+            }
+            NAG_TYPE_LAST_WARNING -> {
+                message = "Final warning message sent to member!"
+            }
+            NAG_TYPE_TERMINATED -> {
+                message = "Box terminated message sent to member!"
+            }
+        }
+        alert(message, "Makeradmin") {
             okButton { }
         }.show()
     }

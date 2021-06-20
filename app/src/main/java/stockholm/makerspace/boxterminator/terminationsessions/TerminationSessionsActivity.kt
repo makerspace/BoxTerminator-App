@@ -1,8 +1,8 @@
 package stockholm.makerspace.boxterminator.terminationsessions
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.termination_sessions_activity.*
 import org.jetbrains.anko.intentFor
 import org.koin.android.ext.android.inject
@@ -30,7 +30,12 @@ class TerminationSessionsActivity : AppCompatActivity(), TerminationSessionsCont
     override fun showScans(scans : List<Box>) {
         val sortedScans = scans.sortedBy { it.expire_date }
         val sessionsAdapter = TerminationListAdapter(sortedScans)
-        scanSessionRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        scanSessionRecyclerView.layoutManager =
+            androidx.recyclerview.widget.LinearLayoutManager(
+                this,
+                androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+                false
+            )
         scanSessionRecyclerView.adapter = sessionsAdapter
     }
 

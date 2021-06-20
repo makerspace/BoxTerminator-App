@@ -1,7 +1,7 @@
 package stockholm.makerspace.boxterminator.login
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.login_activity.*
 import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.intentFor

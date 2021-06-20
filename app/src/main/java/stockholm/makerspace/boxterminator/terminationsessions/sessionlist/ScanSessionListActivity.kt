@@ -1,8 +1,8 @@
 package stockholm.makerspace.boxterminator.terminationsessions.sessionlist
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.scan_session_list_activity.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
@@ -25,7 +25,12 @@ class ScanSessionListActivity : AppCompatActivity(), ScanSessionListContract.Vie
 
     override fun showScans(terminations: List<Box>) {
         val adapter = TerminationListAdapter(terminations)
-        scansRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        scansRecyclerView.layoutManager =
+            androidx.recyclerview.widget.LinearLayoutManager(
+                this,
+                androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+                false
+            )
         scansRecyclerView.adapter = adapter
     }
 }

@@ -1,7 +1,7 @@
 package stockholm.makerspace.boxterminator.utils
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.termination_list_item.view.*
@@ -12,7 +12,7 @@ import stockholm.makerspace.boxterminator.extensions.simpleDateStringWithTime
 import stockholm.makerspace.boxterminator.models.Box
 import stockholm.makerspace.boxterminator.models.TerminationStatus
 
-class TerminationListAdapter(private val terminations: List<Box>) : RecyclerView.Adapter<TerminationListAdapter.TerminationViewHolder>() {
+class TerminationListAdapter(private val terminations: List<Box>) : androidx.recyclerview.widget.RecyclerView.Adapter<TerminationListAdapter.TerminationViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TerminationViewHolder {
         return TerminationViewHolder(parent.inflate(R.layout.termination_list_item), parent.context)
@@ -25,7 +25,7 @@ class TerminationListAdapter(private val terminations: List<Box>) : RecyclerView
         holder.bind(termination)
     }
 
-    class TerminationViewHolder(private val view: View, val context: Context) : RecyclerView.ViewHolder(view) {
+    class TerminationViewHolder(private val view: View, val context: Context) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
         fun bind(box: Box) {
             view.apply {
                 boxName.text = box.name

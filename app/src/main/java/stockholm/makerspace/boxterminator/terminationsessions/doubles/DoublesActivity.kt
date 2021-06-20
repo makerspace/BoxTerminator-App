@@ -1,8 +1,8 @@
 package stockholm.makerspace.boxterminator.terminationsessions.doubles
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.doubles_activity.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
@@ -28,7 +28,12 @@ class DoublesActivity: AppCompatActivity(), DoublesContract.View {
     override fun showDoublesList(doublesList: MutableList<Box>) {
         val sortedBoxes = doublesList.sortedBy { it.member_number }
         val adapter = TerminationListAdapter(sortedBoxes)
-        doublesRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        doublesRecyclerView.layoutManager =
+            androidx.recyclerview.widget.LinearLayoutManager(
+                this,
+                androidx.recyclerview.widget.LinearLayoutManager.VERTICAL,
+                false
+            )
         doublesRecyclerView.adapter = adapter
     }
 }

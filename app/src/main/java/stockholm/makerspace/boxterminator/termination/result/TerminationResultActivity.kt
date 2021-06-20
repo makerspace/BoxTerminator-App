@@ -2,7 +2,7 @@ package stockholm.makerspace.boxterminator.termination.result
 
 import android.app.Activity
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import kotlinx.android.synthetic.main.termination_result_activity.*
 import org.jetbrains.anko.alert

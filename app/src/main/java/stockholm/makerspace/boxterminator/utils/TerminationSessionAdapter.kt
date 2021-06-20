@@ -1,6 +1,6 @@
 package stockholm.makerspace.boxterminator.utils
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.termination_session_item.view.*
@@ -11,7 +11,7 @@ import stockholm.makerspace.boxterminator.extensions.simpleDateString
 
 
 class TerminationSessionAdapter(private val dateList: List<Pair<String, String>>) :
-    RecyclerView.Adapter<TerminationSessionAdapter.SessionViewHolder>() {
+    androidx.recyclerview.widget.RecyclerView.Adapter<TerminationSessionAdapter.SessionViewHolder>() {
 
     private var clickListener: SessionClickListener? = null
 
@@ -29,7 +29,7 @@ class TerminationSessionAdapter(private val dateList: List<Pair<String, String>>
         clickListener = listener
     }
 
-    class SessionViewHolder(val view: View, private val clickListener: SessionClickListener?) : RecyclerView.ViewHolder(view) {
+    class SessionViewHolder(val view: View, private val clickListener: SessionClickListener?) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
         fun bind(tokenDatePair: Pair<String, String>) {
             val date = DateTime(tokenDatePair.first.toLong())
             view.sessionDateText.text = date.simpleDateString()

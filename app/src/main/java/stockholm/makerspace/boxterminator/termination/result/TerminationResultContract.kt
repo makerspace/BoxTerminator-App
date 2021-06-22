@@ -1,10 +1,13 @@
 package stockholm.makerspace.boxterminator.termination.result
 
+import org.joda.time.DateTime
+import stockholm.makerspace.boxterminator.models.Member
+
 
 interface TerminationResultContract {
 
     interface Presenter {
-        fun nag(member_number: Int, box_label_id: Int, nagType: String)
+        fun nag(member: Member, nagType: String)
     }
 
     interface View {

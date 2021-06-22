@@ -59,8 +59,7 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
                 terminationResultBtn.apply {
                     setOnClickListener {
                         presenter.nag(
-                            member.member_number,
-                            member.box_label_id,
+                            member,
                             NAG_TYPE_WARNING
                         )
                     }
@@ -83,8 +82,7 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
                     setOnClickListener {
                         var nagType = NAG_TYPE_LAST_WARNING
                         presenter.nag(
-                            member.member_number,
-                            member.box_label_id,
+                            member,
                             nagType
                         )
                     }
@@ -95,8 +93,7 @@ class TerminationResultActivity : AppCompatActivity(), TerminationResultContract
                     setOnClickListener {
                         var nagType = NAG_TYPE_TERMINATED
                         presenter.nag(
-                            member.member_number,
-                            member.box_label_id,
+                            member,
                             nagType
                         )
                     }

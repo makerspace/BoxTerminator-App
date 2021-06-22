@@ -12,9 +12,6 @@ import stockholm.makerspace.boxterminator.network.Skynet
 import stockholm.makerspace.boxterminator.utils.SkynetDatastore
 import timber.log.Timber
 
-import android.util.Log
-
-
 class TerminationResultPresenter(private val view: TerminationResultContract.View) :
     TerminationResultContract.Presenter, KoinComponent {
 
@@ -42,7 +39,7 @@ class TerminationResultPresenter(private val view: TerminationResultContract.Vie
                     .subscribe(
                         {
                             Timber.d("Success")
-                            view.showNagSuccess()
+                            view.showNagSuccess(nagType)
                         },
                         {
                             Timber.d("Error ${it.message}")

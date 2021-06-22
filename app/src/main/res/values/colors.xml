@@ -12,8 +12,8 @@
     <color name="memberBoxMembershipVeryOld">#D63024</color>
     <color name="memberBoxMembershipVeryOldSecondary">#9E1E15</color>
 
-    <color name="memberBox2Background">#212121</color>
-    <color name="memberBox2Back">#0A0A0A</color>
+    <color name="memberBox2Background">#282828</color>
+    <color name="memberBox2Back">#101010</color>
 
     <color name="white">#FFFFFF</color>
 </resources>
